@@ -25,8 +25,6 @@
     "babel-preset-react": "^6.24.1",
     "prop-types": "^15.5.10",
     "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
     "rollup": "^0.48.2",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.0",
