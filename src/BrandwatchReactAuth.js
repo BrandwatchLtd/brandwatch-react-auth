@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
-import TokenStore from 'viziaauth';
+import TokenStore from 'donny-auth';
 
 export default class BrandwatchReactAuth extends Component {
   getChildContext() {
