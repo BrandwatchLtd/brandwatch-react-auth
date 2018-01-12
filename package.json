@@ -18,7 +18,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "donny-auth": "^1.1.1",
+    "donny-auth": "^1.1.2",
     "jwt-decode": "^2.2.0"
   },
   "devDependencies": {
