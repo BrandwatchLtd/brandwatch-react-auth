@@ -42,12 +42,12 @@ export default class BrandwatchReactAuth extends Component {
     return this.handleGetToken().then(jwtDecode);
   }
 
-  handleGetToken() {
-    return this.store.getToken({ aud: this.props.audience });
+  handleGetToken(aud = this.props.audience) {
+    return this.store.getToken({ aud });
   }
 
-  handleLogout() {
-    return this.store.removeToken({ aud: this.props.audience }).then(() => {
+  handleLogout(aud = this.props.audience) {
+    return this.store.removeToken({ aud }).then(() => {
       window.location.replace(this.store.loginUrl);
     });
   }
