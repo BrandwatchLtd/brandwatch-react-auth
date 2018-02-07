@@ -14,7 +14,7 @@ export default class BrandwatchReactAuth extends Component {
 
   constructor(props) {
     super(props);
-    this.store = new TokenStore(this.props.domain),
+    this.store = new TokenStore(this.props.domain);
     this.handleGetProfile = this.handleGetProfile.bind(this);
     this.handleGetToken = this.handleGetToken.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -29,13 +29,21 @@ export default class BrandwatchReactAuth extends Component {
   }
 
   componentWillMount() {
-    this.handleGetToken().then((token) => {
-      if (!token) {
-        return window.location.replace(this.store.loginUrl);
-      }
+    const { backupDomain, backupRedirect } = this.props;
 
-      this.setState(() => ({ loggedIn: true }));
-    });
+    this.handleGetToken()
+      .then(token => token
+        ? this.setState(() => ({ loggedIn: true }))
+        : new Promise((resolve, reject) => {
+          return backupDomain ? resolve(this.handleGetToken(backupDomain)) : reject()
+        })
+        .then(token => {
+          return token && backupRedirect ? window.location.replace(backupRedirect) : Promise.reject()
+        })
+        .catch(e => {
+          return window.location.replace(this.store.loginUrl)
+        })
+    );
   }
 
   handleGetProfile() {
@@ -47,26 +55,25 @@ export default class BrandwatchReactAuth extends Component {
   }
 
   handleLogout(aud = this.props.audience) {
-    return this.store.removeToken({ aud }).then(() => {
-      window.location.replace(this.store.loginUrl);
-    });
+    return this.store.removeToken({ aud }).then(() =>
+      window.location.replace(this.store.loginUrl));
   }
 
   render() {
     if (this.state.loggedIn === true) {
-      return this.props.children
+      return this.props.children;
     }
-
     return null;
   }
 }
 
-
 BrandwatchReactAuth.propTypes = {
   audience: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
+  backupDomain: PropTypes.string,
+  backupRedirect: PropTypes.string,
   onCreateStore: PropTypes.func,
-}
+};
 
 BrandwatchReactAuth.childContextTypes = {
   brandwatchAuthGetProfile: PropTypes.func.isRequired,
