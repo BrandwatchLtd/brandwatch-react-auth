@@ -1,11 +1,10 @@
-const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:4000',
-    './demo/index.js'
+    './demo/index.js',
   ],
   output: {
     filename: 'bundle.js',
@@ -28,6 +27,6 @@ module.exports = {
   devServer: {
     host: 'localhost',
     port: 4000,
-    contentBase: 'demo'
+    contentBase: 'demo',
   },
 };

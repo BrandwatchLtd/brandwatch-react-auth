@@ -2,6 +2,7 @@ language: node_js
 cache:
   yarn: true
 script:
+- yarn lint
 - yarn test
 after_success:
   - bash ./publish.sh

@@ -5,9 +5,10 @@ export const closedBackupDomain = 'closed.backup.brandwatch.com';
 export const loginUrl = 'https://login.brandwatch.com';
 
 //generated via https://jwt.io/
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCJ9.QlmOBM7imQkVauXII7Hd9rYAFgW6NKMuvZ4GmVSTgpM';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCJ9' +
+'.QlmOBM7imQkVauXII7Hd9rYAFgW6NKMuvZ4GmVSTgpM';
 
-export default (domain) => ({
+export default () => ({
   loginUrl,
   getToken: ({ aud }) => Promise.resolve(aud.startsWith('open') ? token : null),
   removeToken: () => Promise.resolve(),
