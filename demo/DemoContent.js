@@ -18,7 +18,7 @@ export class DemoContent extends Component {
   }
 
   render() {
-    const { brandwatchAuthLogout } = this.context;
+    const { brandwatchAuthLogout, brandwatchAuthHandleRedirect } = this.context;
     const { profile, token } = this.state;
     return (
       <div>
@@ -37,6 +37,7 @@ export class DemoContent extends Component {
         }
 
         <button id="logout" onClick={ () => brandwatchAuthLogout() }>Logout</button>
+        <button id="error" onClick={ () => brandwatchAuthHandleRedirect() }>Error</button>
       </div>
     );
   }
@@ -46,4 +47,5 @@ DemoContent.contextTypes = {
   brandwatchAuthLogout: PropTypes.func.isRequired,
   brandwatchAuthGetProfile: PropTypes.func.isRequired,
   brandwatchAuthGetToken: PropTypes.func.isRequired,
+  brandwatchAuthHandleRedirect: PropTypes.func.isRequired,
 };

@@ -51,12 +51,13 @@ describe('BrandwatchReactAuth', () => {
       return Promise.resolve(render(props))
         .then(component => component.update() )
         .then(component => {
-          component.find(App).find('button').simulate('click')
+          component.find(App).find('#logout').simulate('click')
           return component.update();
         })
         .then(() => expect(global.window.location.replace.callCount).toBe(1));
     })
   });
+
 
   describe('user is not authenticated', () => {
     beforeEach(() => {
@@ -124,6 +125,65 @@ describe('BrandwatchReactAuth', () => {
           expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
           done();
         }, 0);
+      });
+    });
+  });
+
+  describe('user receives an authentication error', () => {
+    describe('user has a backup domain and redirect', () => {
+      describe('user is authenticated against backup domain', () => {
+        beforeEach(() => {
+          props.backupDomain = 'open.backup.brandwatch.com';
+          props.backupRedirect = 'https://my.brandwatch.com';
+        });
+
+        it('redirects them to the backup domain', () => {
+          return Promise.resolve(render(props))
+            .then(component => component.update() )
+            .then(component => {
+              component.find(App).find('#error').simulate('click')
+              return component.update();
+            })
+            .then(() => {
+              expect(global.window.location.replace.callCount).toBe(1)
+              expect(global.window.location.replace.firstCall.args[0]).toBe(props.backupRedirect);
+            });
+        });
+      });
+
+      describe('user is not authenticated against backup domain', () => {
+        beforeEach(() => {
+          props.backupDomain = 'closed.backup.brandwatch.com';
+          props.backupRedirect = 'https://my.brandwatch.com';
+        });
+
+        it('redirects them to the login page', () => {
+          return Promise.resolve(render(props))
+            .then(component => component.update() )
+            .then(component => {
+              component.find(App).find('#error').simulate('click');
+              return component.update();
+            })
+            .then(() => {
+              expect(global.window.location.replace.callCount).toBe(1);
+              expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
+            });
+        });
+      });
+    });
+
+    describe('user does not have a backup domain and redirect', () => {
+      it('redirects them to the login page', () => {
+        return Promise.resolve(render(props))
+          .then(component => component.update() )
+          .then(component => {
+            component.find(App).find('#error').simulate('click')
+            return component.update();
+          })
+          .then(() => {
+            expect(global.window.location.replace.callCount).toBe(1)
+            expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
+          });
       });
     });
   });
