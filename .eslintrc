@@ -1,0 +1,6 @@
+{
+  "extends": ["@brandwatch/eslint-config-axiom"],
+  "globals": {
+    "Promise": true,
+  }
+}

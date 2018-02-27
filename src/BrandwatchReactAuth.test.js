@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import sinon from 'sinon';
-import enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
+import 'enzyme-adapter-react-16';
 import BrandwatchReactAuth from './BrandwatchReactAuth';
 import {
   openDomain,
@@ -28,8 +27,8 @@ describe('BrandwatchReactAuth', () => {
 
   beforeEach(() => {
     props = {
-      audience: 'open.brandwatch.com',
-      domain: 'open.brandwatch.com',
+      audience: openDomain,
+      domain: openDomain,
       onCreateStore: sandbox.stub(),
     };
 
@@ -51,17 +50,17 @@ describe('BrandwatchReactAuth', () => {
       return Promise.resolve(render(props))
         .then(component => component.update() )
         .then(component => {
-          component.find(App).find('#logout').simulate('click')
+          component.find(App).find('#logout').simulate('click');
           return component.update();
         })
         .then(() => expect(global.window.location.replace.callCount).toBe(1));
-    })
+    });
   });
 
 
   describe('user is not authenticated', () => {
     beforeEach(() => {
-      props.audience = 'closed.brandwatch.com';
+      props.audience = closedDomain;
     });
 
     it('does not render the application', (done) => {
@@ -69,28 +68,28 @@ describe('BrandwatchReactAuth', () => {
       setImmediate(() => {
         expect(component.find(App).length).toBe(0);
         done();
-      }, 0)
+      }, 0);
     });
 
     it('redirects them to the login page', (done) => {
       render(props);
       setImmediate(() => {
         expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
-        expect(global.window.location.replace.callCount).toBe(1)
+        expect(global.window.location.replace.callCount).toBe(1);
         done();
-      }, 0)
+      }, 0);
     });
 
     describe('user is authenticated against backup domain', () => {
       beforeEach(() => {
-        props.backupDomain = 'open.backup.brandwatch.com';
+        props.backupDomain = openBackupDomain;
         props.backupRedirect = 'https://my.brandwatch.com';
       });
 
       it('redirects them to the backup domain', (done) => {
-        render(props)
+        render(props);
         setImmediate(() => {
-          expect(global.window.location.replace.callCount).toBe(1)
+          expect(global.window.location.replace.callCount).toBe(1);
           expect(global.window.location.replace.firstCall.args[0]).toBe(props.backupRedirect);
           done();
         }, 0);
@@ -102,11 +101,11 @@ describe('BrandwatchReactAuth', () => {
         });
 
         it('redirects them to the login page', (done) => {
-          render(props)
+          render(props);
           setImmediate(() => {
-            expect(global.window.location.replace.callCount).toBe(1)
+            expect(global.window.location.replace.callCount).toBe(1);
             expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
-            done()
+            done();
           }, 0);
         });
       });
@@ -114,14 +113,14 @@ describe('BrandwatchReactAuth', () => {
 
     describe('user is not authenticated against backup domain', () => {
       beforeEach(() => {
-        props.backupDomain = 'closed.backup.brandwatch.com';
+        props.backupDomain = closedBackupDomain;
         props.backupRedirect = 'https://my.brandwatch.com';
       });
 
       it('redirects them to the login page', (done) => {
-        render(props)
+        render(props);
         setImmediate(() => {
-          expect(global.window.location.replace.callCount).toBe(1)
+          expect(global.window.location.replace.callCount).toBe(1);
           expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
           done();
         }, 0);
@@ -133,7 +132,7 @@ describe('BrandwatchReactAuth', () => {
     describe('user has a backup domain and redirect', () => {
       describe('user is authenticated against backup domain', () => {
         beforeEach(() => {
-          props.backupDomain = 'open.backup.brandwatch.com';
+          props.backupDomain = openBackupDomain;
           props.backupRedirect = 'https://my.brandwatch.com';
         });
 
@@ -141,11 +140,11 @@ describe('BrandwatchReactAuth', () => {
           return Promise.resolve(render(props))
             .then(component => component.update() )
             .then(component => {
-              component.find(App).find('#error').simulate('click')
+              component.find(App).find('#error').simulate('click');
               return component.update();
             })
             .then(() => {
-              expect(global.window.location.replace.callCount).toBe(1)
+              expect(global.window.location.replace.callCount).toBe(1);
               expect(global.window.location.replace.firstCall.args[0]).toBe(props.backupRedirect);
             });
         });
@@ -153,7 +152,7 @@ describe('BrandwatchReactAuth', () => {
 
       describe('user is not authenticated against backup domain', () => {
         beforeEach(() => {
-          props.backupDomain = 'closed.backup.brandwatch.com';
+          props.backupDomain = closedBackupDomain;
           props.backupRedirect = 'https://my.brandwatch.com';
         });
 
@@ -177,11 +176,11 @@ describe('BrandwatchReactAuth', () => {
         return Promise.resolve(render(props))
           .then(component => component.update() )
           .then(component => {
-            component.find(App).find('#error').simulate('click')
+            component.find(App).find('#error').simulate('click');
             return component.update();
           })
           .then(() => {
-            expect(global.window.location.replace.callCount).toBe(1)
+            expect(global.window.location.replace.callCount).toBe(1);
             expect(global.window.location.replace.firstCall.args[0]).toBe(loginUrl);
           });
       });

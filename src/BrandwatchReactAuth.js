@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import TokenStore from 'donny-auth';
 
@@ -58,7 +58,7 @@ export default class BrandwatchReactAuth extends Component {
       });
     }
 
-    return window.location.replace(this.store.loginUrl)
+    return window.location.replace(this.store.loginUrl);
   }
 
   handleLogout(aud = this.props.audience) {
@@ -76,9 +76,10 @@ export default class BrandwatchReactAuth extends Component {
 
 BrandwatchReactAuth.propTypes = {
   audience: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired,
   backupDomain: PropTypes.string,
   backupRedirect: PropTypes.string,
+  children: PropTypes.node,
+  domain: PropTypes.string.isRequired,
   onCreateStore: PropTypes.func,
 };
 
