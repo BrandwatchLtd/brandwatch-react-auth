@@ -6,15 +6,17 @@ import TokenStore from 'donny-auth';
 export default class BrandwatchReactAuth extends Component {
   getChildContext() {
     return {
-      brandwatchAuthLogout: this.handleLogout,
       brandwatchAuthGetProfile: this.handleGetProfile,
       brandwatchAuthGetToken: this.handleGetToken,
+      brandwatchAuthHandleRedirect: this.handleRedirect,
+      brandwatchAuthLogout: this.handleLogout,
     };
   }
 
   constructor(props) {
     super(props);
     this.store = new TokenStore(this.props.domain);
+    this.handleRedirect = this.handleRedirect.bind(this);
     this.handleGetProfile = this.handleGetProfile.bind(this);
     this.handleGetToken = this.handleGetToken.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -29,21 +31,7 @@ export default class BrandwatchReactAuth extends Component {
   }
 
   componentWillMount() {
-    const { backupDomain, backupRedirect } = this.props;
-
-    this.handleGetToken()
-      .then(token => token
-        ? this.setState(() => ({ loggedIn: true }))
-        : new Promise((resolve, reject) => {
-          return backupDomain ? resolve(this.handleGetToken(backupDomain)) : reject()
-        })
-        .then(token => {
-          return token && backupRedirect ? window.location.replace(backupRedirect) : Promise.reject()
-        })
-        .catch(e => {
-          return window.location.replace(this.store.loginUrl)
-        })
-    );
+    this.handleGetToken();
   }
 
   handleGetProfile() {
@@ -51,7 +39,26 @@ export default class BrandwatchReactAuth extends Component {
   }
 
   handleGetToken(aud = this.props.audience) {
-    return this.store.getToken({ aud });
+    return this.store.getToken({ aud })
+      .then(token => {
+        if (token) {
+          this.setState({ loggedIn: true });
+          return token;
+        }
+        return this.handleRedirect();
+      });
+  }
+
+  handleRedirect() {
+    const { backupDomain, backupRedirect } = this.props;
+
+    if (backupDomain && backupRedirect) {
+      return this.store.getToken({ aud: backupDomain }).then(backupToken => {
+        window.location.replace(backupToken ? backupRedirect : this.store.loginUrl);
+      });
+    }
+
+    return window.location.replace(this.store.loginUrl)
   }
 
   handleLogout(aud = this.props.audience) {
@@ -78,5 +85,6 @@ BrandwatchReactAuth.propTypes = {
 BrandwatchReactAuth.childContextTypes = {
   brandwatchAuthGetProfile: PropTypes.func.isRequired,
   brandwatchAuthGetToken: PropTypes.func.isRequired,
+  brandwatchAuthHandleRedirect: PropTypes.func.isRequired,
   brandwatchAuthLogout: PropTypes.func.isRequired,
 };
