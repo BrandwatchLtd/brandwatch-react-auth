@@ -1907,9 +1907,9 @@ domutils@^1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
-donny-auth@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/donny-auth/-/donny-auth-1.1.3.tgz#587776e020fbdd51f19050a562807e97a1275057"
+donny-auth@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/donny-auth/-/donny-auth-1.3.0.tgz#f266ca3e41f7790aa1f286912775c749bfb88e3c"
   dependencies:
     es6-promise "^4.2.2"
     frame-rpc "github:BrandwatchLtd/frame-rpc#v2.0.0"
