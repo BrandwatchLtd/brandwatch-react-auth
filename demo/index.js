@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import DemoContent from './DemoContent';
+import { DemoContent } from './DemoContent';
 import BrandwatchReactAuth from '../';
 
 
