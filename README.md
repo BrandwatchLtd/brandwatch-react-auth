@@ -20,7 +20,8 @@ render((
 
 ### Demo
 
-A demo application can be run...
+To run the demo application you will need to set the domain to point at your auth domain e.g `https://auth-gateway.platform-stage.gcp0.bwcom.net/store`.
+It seems it was once possible and maybe still so to instead set the `BW_REACT_AUTH_DOMAIN` environment variable however I couldn't get this to work locally.
 
 ```
 yarn install
