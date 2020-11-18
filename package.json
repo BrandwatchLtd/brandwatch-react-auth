@@ -43,7 +43,7 @@
     "rollup-plugin-commonjs": "^8.2.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "semantic-release": "^7.0.2",
+    "semantic-release": "^17.2.3",
     "sinon": "^4.2.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
