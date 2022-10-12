@@ -55,6 +55,21 @@ describe('BrandwatchReactAuth', () => {
         })
         .then(() => expect(global.window.location.replace.callCount).toBe(1));
     });
+
+    it('redirects them when they logout to the logout url set in props', () => {
+      props.logoutUrl = 'https://auth-url.com/logout?clientId=test-client&returnTo=https://my.bw';
+
+      return Promise.resolve(render(props))
+      .then(component => component.update() )
+      .then(component => {
+        component.find(App).find('#logout').simulate('click');
+        return component.update();
+      })
+      .then(() => {
+        expect(global.window.location.replace.callCount).toBe(1);
+        expect(global.window.location.replace.args[0][0]).toEqual(props.logoutUrl);
+      });
+    });
   });
 
 

@@ -75,6 +75,14 @@
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@brandwatch/eslint-config-axiom/-/eslint-config-axiom-0.0.1.tgz#b414e11b28a62a724c4cce84a2a08bf0a5a47fc5"
 
+"@brandwatch/frame-rpc@^2.0.1":
+  version "2.0.1"
+  resolved "https://artifactory.brandwatch.com/artifactory/api/npm/npm/@brandwatch/frame-rpc/-/frame-rpc-2.0.1.tgz#f2f4354da8d5285db0f33d9c7f6ecf8371827574"
+  integrity sha1-8vQ1TajVKF2w8z2cf27Pg3GCdXQ=
+  dependencies:
+    isarray "^2.0.5"
+    url-parse "^1.2.0"
+
 "@semantic-release/commit-analyzer@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-2.0.0.tgz#924d1e2c30167c6a472bed9f66ee8f8e077489b2"
@@ -1907,13 +1915,14 @@ domutils@^1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
-donny-auth@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/donny-auth/-/donny-auth-1.3.0.tgz#f266ca3e41f7790aa1f286912775c749bfb88e3c"
+donny-auth@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/donny-auth/-/donny-auth-1.6.1.tgz#ecb0960f8423b60966861b9dcb6cf39030a39442"
+  integrity sha512-qeR9anOiFfLu3yTVdHGg1ZQ5UXssD9wVZkJrvtUPk8/eCupj2eB/OUKAEtn3gzabxfpby0+zt4U9bZuk040j8w==
   dependencies:
-    es6-promise "^4.2.2"
-    frame-rpc "github:BrandwatchLtd/frame-rpc#v2.0.0"
-    url-parse "^1.2.0"
+    "@brandwatch/frame-rpc" "^2.0.1"
+    es6-promise "^4.2.8"
+    url-parse "^1.5.10"
 
 dot-prop@^3.0.0:
   version "3.0.0"
@@ -2071,9 +2080,10 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
 
-es6-promise@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.2.tgz#f722d7769af88bd33bc13ec6605e1f92966b82d9"
+es6-promise@^4.2.8:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
+  integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
 
 es6-set@~0.1.5:
   version "0.1.5"
@@ -2573,13 +2583,6 @@ form-data@~2.3.1:
 forwarded@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.0.tgz#19ef9874c4ae1c297bcf078fde63a09b66a84363"
-
-"frame-rpc@github:BrandwatchLtd/frame-rpc#v2.0.0":
-  version "2.0.0"
-  resolved "https://codeload.github.com/BrandwatchLtd/frame-rpc/tar.gz/cc832036249ea02d15cd5f8a0066a6a5dfa00b01"
-  dependencies:
-    isarray "~0.0.1"
-    url-parse "^1.2.0"
 
 fresh@0.5.0:
   version "0.5.0"
@@ -3372,13 +3375,18 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
 
-isarray@0.0.1, isarray@~0.0.1:
+isarray@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
 
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
+
+isarray@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.5.tgz#8af1e4c1221244cc62459faf38940d4e644a5723"
+  integrity sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -4982,6 +4990,11 @@ querystringify@0.0.x:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
 
+querystringify@^2.1.1:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
+  integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
+
 querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
@@ -5324,9 +5337,10 @@ require-uncached@^1.0.3:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
 
-requires-port@1.0.x, requires-port@1.x.x, requires-port@~1.0.0:
+requires-port@1.0.x, requires-port@1.x.x, requires-port@^1.0.0, requires-port@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+  integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
@@ -6193,6 +6207,14 @@ url-parse@^1.2.0:
   dependencies:
     querystringify "~1.0.0"
     requires-port "~1.0.0"
+
+url-parse@^1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.10.tgz#9d3c2f736c1d75dd3bd2be507dcc111f1e2ea9c1"
+  integrity sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==
+  dependencies:
+    querystringify "^2.1.1"
+    requires-port "^1.0.0"
 
 url@^0.11.0:
   version "0.11.0"
