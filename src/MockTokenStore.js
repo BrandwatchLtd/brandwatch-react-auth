@@ -11,5 +11,9 @@ const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCJ9' +
 export default () => ({
   loginUrl,
   getToken: ({ aud }) => Promise.resolve(aud.startsWith('open') ? token : null),
-  removeToken: () => Promise.resolve(),
+  removeToken: ({ logoutUrl }) => {
+    if (logoutUrl) return global.window.location.replace(logoutUrl);
+
+    return Promise.resolve();
+  },
 });

@@ -62,6 +62,12 @@ export default class BrandwatchReactAuth extends Component {
   }
 
   handleLogout(aud = this.props.audience) {
+    const { logoutUrl } = this.props;
+
+    if (logoutUrl) {
+      return this.store.removeToken({ logoutUrl });
+    }
+
     return this.store.removeToken({ aud }).then(() =>
       window.location.replace(this.store.loginUrl));
   }
@@ -80,6 +86,7 @@ BrandwatchReactAuth.propTypes = {
   backupRedirect: PropTypes.string,
   children: PropTypes.node,
   domain: PropTypes.string.isRequired,
+  logoutUrl: PropTypes.string,
   onCreateStore: PropTypes.func,
 };
 
