@@ -1,5 +1,7 @@
-# brandwatch-react-auth
+# DEPRECATED - Use [OIDC SPA React Client](https://github.com/BrandwatchLtd/auth-monorepo/tree/main/packages/oidc-spa-client-react) instead
 
+---
+# brandwatch-react-auth
 BrandwatchReactAuth component for seamless application authentication.
 
 BrandwatchReactAuth is a wrapper around [donny-auth](https://github.com/BrandwatchLtd/donny-auth). It adds a reusable abstraction over the donny-auth token API. BrandwatchReactAuth also adds some helpful options such as adding the ability to add a back-up domain.
